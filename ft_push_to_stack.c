@@ -11,5 +11,7 @@ void	ft_push_to_stack(char *str, t_stack **from, t_stack **to)
 	push->next = *to;
 	*to = push;
 	ft_printf("%s\n", str);
+	ft_position(from);
+	ft_position(to);
 }
 

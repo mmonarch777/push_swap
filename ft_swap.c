@@ -13,7 +13,10 @@ void ft_swap(char *str, t_stack **stack)
 	swap2->next = swap1;
 	*stack = swap2;
 	if (ft_strncmp(str, "ss", 2))
+	{
 		ft_printf("%s\n", str);
+		ft_position(stack);
+	}
 }
 
 void ft_swap_ss(char *str, t_stack **a, t_stack **b)
@@ -21,4 +24,6 @@ void ft_swap_ss(char *str, t_stack **a, t_stack **b)
 	ft_swap("ss", a);
 	ft_swap("ss", b);
 	ft_printf("%s\n", str);
+	ft_position(a);
+	ft_position(b);
 }

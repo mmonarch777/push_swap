@@ -15,7 +15,10 @@ void	ft_rotate(char *str, t_stack **stack)
 	swap1->next = NULL;
 	*stack = swap2;
 	if (ft_strncmp(str, "rr", 2))
+	{
 		ft_printf("%s\n", str);
+		ft_position(stack);
+	}
 
 }
 
@@ -24,4 +27,6 @@ void	ft_rotate_rr(char *str, t_stack **a, t_stack **b)
 	ft_rotate("rr", a);
 	ft_rotate("rr", b);
 	ft_printf("%s\n", str);
+	ft_position(a);
+	ft_position(b);
 }

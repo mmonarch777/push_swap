@@ -19,14 +19,16 @@ int	main(int argc, char **argv)
 //	ft_swap("sa", &a);
 	ft_markup(&a);
 	ft_sort(&a, &b);
+
 	while (a)
 	{
-		ft_printf("a:  number %d,  index %d,  markup %d,  num_markup %d\n", a->number, a->index, a->markup, a->num_markup);
+		ft_printf("a:  number %10d,  index %10d,  markup %10d,  num_markup %10d,  position %10d\n", a->number, a->index, a->markup, a->num_markup, a->position);
 		a = a->next;
 	}
+	ft_printf("----------------------------------------------------------------------------------------------------------\n");
 	while (b)
 	{
-		ft_printf("b:  number %d,  index %d,  markup %d,  num_markup %d\n", b->number, b->index, b->markup, b->num_markup);
+		ft_printf("b:  number %10d,  index %10d,  markup %10d,  num_markup %10d,  position %10d\n", b->number, b->index, b->markup, b->num_markup, b->position);
 		b = b->next;
 	}
 	return 0;

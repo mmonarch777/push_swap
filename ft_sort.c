@@ -55,11 +55,8 @@ void	ft_big_markup(int index, t_stack **a)
 
 void	ft_sort(t_stack **a, t_stack **b)
 {
-	t_stack *head_a;
 	int 	index;
-	int 	numb;
 
-	head_a = *a;
 	index = ft_find_start_index(a);
 	ft_big_markup(index, a);
 	while (ft_check_false(a))

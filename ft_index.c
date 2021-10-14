@@ -55,7 +55,7 @@ void	ft_index(t_stack **a)
 	t_stack *head;
 	int		ind;
 
-	ind = 0;
+	ind = 1;
 	head = *a;
 	while (head)
 	{

@@ -19,22 +19,15 @@ static int	ft_find_big_markup(t_stack **a)
 {
 	t_stack	*head1;
 	int 	big;
-	int 	index;
 
 	head1 = *a;
 	big = head1->num_markup;
-	index = head1->index;
 	head1 = head1->next;
 	while (head1)
 	{
 		if (big < head1->num_markup)
-		{
 			big = head1->num_markup;
-			index = head1->index;
-		}
-		if (big == head1->num_markup)
-			if (index > head1->index)
-				index = head1->index;
+
 		head1 = head1->next;
 	}
 	return (big);

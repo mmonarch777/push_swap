@@ -8,6 +8,7 @@ typedef struct s_stack
 	int 			index;
 	int 			markup;
 	int 			num_markup;
+	int 			position;
 	struct s_stack	*next;
 }	t_stack;
 
@@ -28,4 +29,5 @@ void	ft_add_markup(t_stack **head, t_stack **a);
 void	ft_big_markup(int index, t_stack **a);
 int		ft_need_swap(int index, t_stack **a);
 void	ft_add_new_markup(int index, t_stack **a);
+void	ft_position(t_stack **stack);
 #endif
