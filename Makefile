@@ -4,7 +4,8 @@ HEADER = push_swap.h
 
 SRC =	push_swap.c		error.c			ft_check_digit.c		ft_add_and_handling.c		ft_push_to_stack.c\
 		ft_swap.c		ft_rotate.c		ft_revers_rotate.c		ft_index.c					ft_markup.c\
-		ft_sort.c		ft_need_swap.c	ft_position.c
+		ft_sort.c		ft_need_swap.c	ft_position.c			ft_sort_back.c				ft_last_index.c\
+
 
 OBJ = $(patsubst %.c,%.o,$(SRC))
 
