@@ -1,88 +1,109 @@
 #include "push_swap.h"
 
-static int	ft_check_min_index(t_stack **stack)
+static int	ft_find_index(t_stack **stack, char *str)
 {
-	t_stack *head;
+	t_stack	*head;
 	int		min;
-
-	head = *stack;
-	min = head.index;
-	while (head)
-	{
-		if (min > head.index)
-			min = head.index;
-		head = head.next
-	}
-	return (min);
-}
-
-static int	ft_check_max_index(t_stack **stack)
-{
-	t_stack *head;
 	int		max;
 
 	head = *stack;
-	max = head.index;
+	min = head->index;
+	max = head->index;
 	while (head)
 	{
-		if (max < head.index)
-			max = head.index;
-		head = head.next
+		if (min > head->index)
+			min = head->index;
+		if (max < head->index)
+			max = head->index;
+		head = head->next;
 	}
+	if (!ft_strncmp(str, "min", 3))
+		return (min);
 	return (max);
 }
 
-
-
-void ft_find_position(t_stack **a, t_stack **b)
+static void	ft_case1(t_stack **a, t_stack **b, int min, int max)
 {
-	t_stack *ha,
-	t_stack *hb;
-	int 	min;
-	int 	max;
-	int 	last;
+	t_stack	*head;
+	int		last;
 
-	ha = *a;
-	min = ft_check_min_index(a);
-	max = ft_check_max_index(a);
+	head = *a;
 	last = ft_last_index(a);
-//	if((*b)->index < min || (*b)->index > max || ((*b)->index > last && (*b)->index < (*a)->index))------------
-	while (ha)
+	while (head)
 	{
 		if ((*b)->index > last && (*b)->index < (*a)->index)
 		{
 			(*b)->num_markup = (*a)->step_up + (*b)->step_up;
-			break;
+			(*b)->markup = (*a)->index;
+			break ;
 		}
 		if ((*b)->index < min || (*b)->index > max)
 		{
-			if (ha->index == min)
+			if (head->index == min)
 			{
-				(*b)->num_markup = ha->step_up + (*b)->step_up;
-				break;
+				(*b)->num_markup = head->step_up + (*b)->step_up;
+				(*b)->markup = head->index;
+				break ;
 			}
 		}
-		ha = ha->next;
-	}
-	//	else if((*b)->index < (*a)->index) --------------------
-	while (ha->next)
-	{
-		if (ha->next->index > (*b)->index)
-		{
-			(*b)->num_markup = ha->step_up + (*b)->step_up;
-			break;
-		}
-		ha = ha->next;
-	}
-//	else
-	while(ha)
-	{
-		if (ha->index > (*b)->index)
-		{
-			(*b)->num_markup = ha->step_up + (*b)->step_up;
-			break;
-		}
-		ha = ha->next;
+		head = head->next;
 	}
 }
 
+static void	ft_case2(t_stack **a, t_stack **b)
+{
+	t_stack	*head;
+
+	head = *a;
+	while (head)
+	{
+		if ((*b)->index > head->index)
+			break ;
+		head = head->next;
+	}
+	while (head)
+	{
+		if (head->index > (*b)->index)
+		{
+			(*b)->num_markup = head->step_up + (*b)->step_up;
+			(*b)->markup = head->index;
+			break ;
+		}
+		head = head->next;
+	}
+}
+
+static void	ft_case3(t_stack **a, t_stack **b)
+{
+	t_stack	*head;
+
+	head = *a;
+	while (head)
+	{
+		if (head->index > (*b)->index)
+		{
+			(*b)->num_markup = head->step_up + (*b)->step_up;
+			(*b)->markup = head->index;
+			break ;
+		}
+		head = head->next;
+	}
+}
+
+void	ft_find_position(t_stack **a, t_stack **b)
+{
+	int	min;
+	int	max;
+	int	last;
+
+	min = ft_find_index(a, "min");
+	max = ft_find_index(a, "max");
+	last = ft_last_index(a);
+	if ((*b)->index < min || (*b)->index > max
+		|| ((*b)->index > last && (*b)->index < (*a)->index))
+		ft_case1(a, b, min, max);
+	else if ((*b)->index < (*a)->index)
+		ft_case2(a, b);
+	else
+		ft_case3(a, b);
+}

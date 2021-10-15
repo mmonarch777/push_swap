@@ -32,6 +32,10 @@ int		ft_need_swap(int index, t_stack **a);
 void	ft_add_new_markup(int index, t_stack **a);
 void	ft_position(t_stack **stack);
 int		ft_size(t_stack **stack);
+void	ft_step_to_up(t_stack **stack);
 void	ft_sort_back(t_stack **a, t_stack **b);
 int		ft_last_index(t_stack **stack);
+void	ft_find_position(t_stack **a, t_stack **b);
+void	ft_push_back(t_stack **a, t_stack **b);
+void	ft_last_move(t_stack **a);
 #endif

@@ -11,15 +11,10 @@ int	main(int argc, char **argv)
 		error("Not enough arguments");
 	ft_add_and_handling(argv, &a);
 	ft_index(&a);
-//	ft_push_to_stack("pb", &a, &b);
-//	ft_push_to_stack("pb", &a, &b);
-//	ft_push_to_stack("pb", &a, &b);
-//	ft_rotate("ra", &b);
-//	ft_push_to_stack("pa", &b, &a);
-//	ft_swap("sa", &a);
 	ft_markup(&a);
 	ft_sort(&a, &b);
 	ft_sort_back(&a, &b);
+	ft_last_move(&a);
 	while (a)
 	{
 		ft_printf("a:  number %5d,  index %5d,  markup %5d,  num_markup %5d,  position %5d,  push_up %5d\n", a->number, a->index, a->markup, a->num_markup, a->position, a->step_up);

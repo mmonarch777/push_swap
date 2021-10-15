@@ -1,33 +1,27 @@
 #include "push_swap.h"
 
-static void	ft_push_up(t_stack **stack)
+static void	ft_find_and_add_position(t_stack **a, t_stack **b)
 {
 	t_stack *head;
 
-	int 	size;
-	head = *stack;
-	size = ft_size(stack);
+	head = *b;
 	while (head)
 	{
-		if ((size / 2 + 1) >= head->position)
-			head->step_up = head->position - 1;
-		else
-			head->step_up = size - head->position + 1;
+		ft_find_position(a, &head);
 		head = head->next;
 	}
 }
+
 void	ft_sort_back(t_stack **a, t_stack **b)
 {
-	t_stack *ha;
-	t_stack *hb;
 
-
-	ha = *a;
-	hb = *b;
-	ft_push_up(a);
-	ft_push_up(b);
-//	while (b)
-//	{
-//
-//	}
+	ft_step_to_up(a);
+	ft_step_to_up(b);
+	while ((*b))
+	{
+		ft_find_and_add_position(a, b);
+		ft_push_back(a, b);
+		ft_step_to_up(a);
+		ft_step_to_up(b);
+	}
 }
