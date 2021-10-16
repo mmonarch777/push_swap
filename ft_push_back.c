@@ -1,22 +1,35 @@
 #include "push_swap.h"
 
+static void ft_min_step(t_stack **head, int *min, int *index)
+{
+	while (*head)
+	{
+		if ((*head)->num_markup == *min)
+			if ((*head)->index < *index)
+				*index = (*head)->index;
+		if (*min > (*head)->num_markup)
+		{
+			*min = (*head)->num_markup;
+			*index = (*head)->index;
+		}
+		*head = (*head)->next;
+	}
+}
+
 static t_stack	*ft_find_min_stepup(t_stack **b)
 {
 	t_stack *head;
 	int 	min;
+	int 	index;
 
 	head = *b;
 	min = head->num_markup;
-	while (head)
-	{
-		if (min > head->num_markup)
-			min = head->num_markup;
-		head = head->next;
-	}
+	index = head->index;
+	ft_min_step(&head, &min, &index);
 	head = *b;
 	while (head)
 	{
-		if (min == head->num_markup)
+		if (min == head->num_markup && index == head->index)
 			break ;
 		head = head->next;
 	}
@@ -49,7 +62,7 @@ static void	ft_make_rrr(t_stack **ha, t_stack **hb, t_stack **a, t_stack **b)
 
 static void	ft_no_rrr(t_stack **ha, t_stack **hb, t_stack **a, t_stack **b)
 {
-	if ((*hb)->position < ft_size(b) / 2 + 1)
+	if ((*hb)->position <= ft_size(b) / 2 + 1)
 	{
 		while ((*hb)->position != 1)
 			ft_rotate("rb", b);

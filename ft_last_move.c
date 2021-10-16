@@ -14,7 +14,7 @@ void ft_last_move(t_stack **a)
 			break ;
 		head = head->next;
 	}
-	if (head->index <= size / 2 + 1)
+	if (head->position <= size / 2 + 1)
 		while (head->position != 1)
 			ft_rotate("ra", a);
 	else

@@ -22,11 +22,10 @@ static int	ft_find_start_index(t_stack **a)
 				index = head->index;
 		head = head->next;
 	}
-	head = *a;
 	return (index);
 }
 
-static int	ft_check_false(t_stack **a)
+static int	ft_check_false0(t_stack **a)
 {
 	t_stack *head;
 
@@ -34,6 +33,20 @@ static int	ft_check_false(t_stack **a)
 	while (head)
 	{
 		if (head->markup == 0)
+			return (1);
+		head = head->next;
+	}
+	return (0);
+}
+
+static int	ft_check_false2(t_stack **a)
+{
+	t_stack *head;
+
+	head = *a;
+	while (head)
+	{
+		if (head->markup == 2)
 			return (1);
 		head = head->next;
 	}
@@ -59,17 +72,18 @@ void	ft_sort(t_stack **a, t_stack **b)
 
 	index = ft_find_start_index(a);
 	ft_big_markup(index, a);
-	while (ft_check_false(a))
+	while (ft_check_false0(a))
 	{
-		if (ft_need_swap(index, a))
-		{
-			ft_swap("sa", a);
-			ft_add_new_markup(index, a);
-		}
-		else if ((*a)->markup == 0)
+		if ((*a)->markup == 0)
 			ft_push_to_stack("pb", a, b);
 		else
 			ft_rotate("ra", a);
 	}
-
+	while (ft_check_false2(a))
+	{
+		if ((*a)->markup == 2)
+			ft_push_to_stack("pb", a, b);
+		else
+			ft_rotate("ra", a);
+	}
 }

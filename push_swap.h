@@ -28,8 +28,6 @@ void	ft_markup(t_stack **a);
 void	ft_sort(t_stack **a, t_stack **b);
 void	ft_add_markup(t_stack **head, t_stack **a);
 void	ft_big_markup(int index, t_stack **a);
-int		ft_need_swap(int index, t_stack **a);
-void	ft_add_new_markup(int index, t_stack **a);
 void	ft_position(t_stack **stack);
 int		ft_size(t_stack **stack);
 void	ft_step_to_up(t_stack **stack);

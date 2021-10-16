@@ -12,6 +12,34 @@ void 	*ft_lstnew_ps(int number)
 	return (mass);
 }
 
+static int	ft_atoi_long(const char *str)
+{
+	int		i;
+	int		nb;
+	long	num;
+
+	i = 0;
+	num = 0;
+	nb = 1;
+	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'\
+		|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			nb = nb * (-1);
+		i++;
+	}
+	while (str[i] >= 48 && str[i] <= 57)
+	{
+		num = num * 10 + (str[i] - '0');
+		i++;
+	}
+	if (num * nb > 2147483647 || num * nb < -2147483648)
+		error("I want a number from the INT range :p");
+	return ((int)num * nb);
+}
+
 void	ft_add_to_list(char **mass, t_stack **a)
 {
 	t_stack *first;
@@ -21,7 +49,7 @@ void	ft_add_to_list(char **mass, t_stack **a)
 	i = 0;
 	while (mass[i])
 	{
-		new = (t_stack *)ft_lstnew_ps(ft_atoi(mass[i]));
+		new = (t_stack *)ft_lstnew_ps(ft_atoi_long(mass[i]));
 		if (*a == NULL)
 			*a = new;
 		else

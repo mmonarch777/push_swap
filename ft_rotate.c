@@ -19,7 +19,6 @@ void	ft_rotate(char *str, t_stack **stack)
 		ft_printf("%s\n", str);
 		ft_position(stack);
 	}
-
 }
 
 void	ft_rotate_rr(char *str, t_stack **a, t_stack **b)

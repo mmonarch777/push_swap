@@ -1,34 +1,43 @@
 #include "push_swap.h"
 
-void	ft_add_markup(t_stack **head, t_stack **a)
+static void ft_add_mark(t_stack **head, t_stack **a, int *first_ind, int *nb)
 {
-	int 	nb;
-	int 	numb;
-	int 	big_index;
+	int 	size;
+	int 	index;
 
-	nb = 1;
-	big_index = (*head)->index;
-	numb = (*head)->number;
-	(*head)->markup = 1;
-	*head = (*head)->next;
+	index = *first_ind;
+	size = ft_size(a);
 	if (*head == NULL)
 		*head = *a;
 	while (*head)
 	{
-		if (big_index < (*head)->index)
+		(*head)->markup = 0;
+		if (*first_ind < (*head)->index)
 		{
-			big_index = (*head)->index;
+			*first_ind = (*head)->index;
 			(*head)->markup = 1;
 			nb++;
 		}
-		else
-			(*head)->markup = 0;
+		if ((*head)->index < size / 2 + 1 && (*head)->markup != 1)
+			(*head)->markup = 2;
 		(*head) = (*head)->next;
 		if (*head == NULL)
 			*head = *a;
-		if (numb == (*head)->number)
+		if (index == (*head)->index)
 			break;
 	}
+}
+
+void	ft_add_markup(t_stack **head, t_stack **a)
+{
+	int 	nb;
+	int 	first_ind;
+
+	nb = 1;
+	first_ind = (*head)->index;
+	(*head)->markup = 1;
+	*head = (*head)->next;
+	ft_add_mark(head, a, &first_ind, &nb);
 	(*head)->num_markup = nb;
 }
 
