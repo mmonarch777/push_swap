@@ -1,15 +1,16 @@
 #include "push_swap.h"
+#include <stdio.h>
 
 void 	*ft_lstnew_ps(int number)
 {
-	t_stack	*mass;
+	t_stack	*stack;
 
-	mass = malloc(sizeof (t_stack));
-	if (!mass)
+	stack = malloc(sizeof (t_stack));
+	if (!stack)
 		return (NULL);
-	mass->number = number;
-	mass->next = NULL;
-	return (mass);
+	stack->number = number;
+	stack->next = NULL;
+	return (stack);
 }
 
 static int	ft_atoi_long(const char *str)
@@ -40,62 +41,129 @@ static int	ft_atoi_long(const char *str)
 	return ((int)num * nb);
 }
 
-void	ft_add_to_list(char **mass, t_stack **a)
+void	ft_add_to_list(int *integer, int size, t_stack **a)
 {
-	t_stack *first;
-	t_stack	*new;
-	int		i;
+	t_stack	*head;
+	int 	i;
 
 	i = 0;
-	while (mass[i])
+	if (!*a)
 	{
-		new = (t_stack *)ft_lstnew_ps(ft_atoi_long(mass[i]));
-		if (*a == NULL)
-			*a = new;
-		else
-		{
-			first = *a;
-			while (first->next)
-				first = first->next;
-			first->next = new;
-		}
+		*a = ft_lstnew_ps(integer[i]);
 		i++;
 	}
-}
-
-void	ft_check_duplicate(t_stack **a)
-{
-	t_stack	*first;
-	t_stack	*check;
-
-	first = *a;
-	while (first)
+	head = *a;
+	while (size > i)
 	{
-		check = first->next;
-		while(check)
-		{
-			if (first->number == check->number)
-				error("Arguments have duplicates");
-			check = check->next;
-		}
-		first = first->next;
+		printf("%d\n", head->number);
+		head->next = ft_lstnew_ps(integer[i]);
+		i++;
+		head = head->next;
 	}
+	printf("%d\n", head->number);
 }
 
-void ft_add_and_handling(char **argv, t_stack **a)
+static int	ft_find_number(char **argv)
 {
-	int 	i;
 	char	**mass;
+	int 	size;
+	int		i;
+	int 	j;
 
 	i = 1;
+	size = 0;
 	while (argv[i])
 	{
+		j = 0;
 		mass = ft_split(argv[i], ' ');
-		ft_check_digit(mass);
-		ft_add_to_list(mass, a);
+		while (mass[j])
+		{
+			ft_check_digit(mass);
+			free(mass[j]);
+			j++;
+			size++;
+		}
 		free(mass);
 		i++;
 	}
-	ft_check_duplicate(a);
+	return (size);
+}
 
+static void	ft_add_to_integer(char **argv, int *integer)
+{
+	char	**mass;
+	int		i;
+	int 	j;
+	int		num;
+
+	i = 1;
+	num = 0;
+	while (argv[i])
+	{
+		j = 0;
+		mass = ft_split(argv[i], ' ');
+		while (mass[j])
+		{
+			integer[num] = ft_atoi_long(mass[j]);
+			free(mass[j]);
+			num++;
+			j++;
+		}
+		i++;
+		free(mass);
+	}
+}
+
+void	ft_check_duplicat(int *integer, int number)
+{
+	int	i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while(i < number)
+	{
+		j = i + 1;
+		while (j < number)
+		{
+			if (integer[i] == integer[j])
+				error("I can't work with duplicates :(");
+			j++;
+		}
+		i++;
+	}
+}
+
+void	ft_check_sort(t_stack **a)
+{
+	t_stack	*head;
+	int 	numb;
+
+	head = *a;
+	numb = head->number;
+	head = head->next;
+	while (head)
+	{
+		if (numb < head->number)
+			numb = head->number;
+		else
+			return ;
+		head = head->next;
+	}
+	error("Stack sorted");
+}
+void	ft_add_and_handling(char **argv, t_stack **a)
+{
+	int 	i;
+	int 	number;
+	int 	*integer;
+
+	number = ft_find_number(argv);
+	integer = malloc(sizeof (int) * number);
+	ft_add_to_integer(argv, integer);
+	ft_check_duplicat(integer, number);
+//	while (number-- > 0)
+//		ft_printf("%d\n", *integer++);
+	ft_add_to_list(integer, number, a);
+	ft_check_sort(a);
 }
