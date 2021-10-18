@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_last_move.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmonarch <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/18 18:45:22 by mmonarch          #+#    #+#             */
+/*   Updated: 2021/10/18 18:45:25 by mmonarch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void ft_last_move(t_stack **a)
+void	ft_last_move(t_stack **a)
 {
-	t_stack *head;
-	int 	size;
+	t_stack	*head;
+	int		size;
 
 	size = ft_size(a);
 	head = *a;

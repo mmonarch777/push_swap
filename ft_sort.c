@@ -1,33 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_sort.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmonarch <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/18 18:48:07 by mmonarch          #+#    #+#             */
+/*   Updated: 2021/10/18 18:48:11 by mmonarch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-
-static int	ft_find_start_index(t_stack **a)
-{
-	t_stack	*head;
-	int 	big;
-	int 	index;
-
-	head = *a;
-	big = head->num_markup;
-	index = head->index;
-	head = head->next;
-	while (head)
-	{
-		if (big < head->num_markup)
-		{
-			big = head->num_markup;
-			index = head->index;
-		}
-		if (big == head->num_markup)
-			if (index > head->index)
-				index = head->index;
-		head = head->next;
-	}
-	return (index);
-}
 
 static int	ft_check_false0(t_stack **a)
 {
-	t_stack *head;
+	t_stack	*head;
 
 	head = *a;
 	while (head)
@@ -41,7 +28,7 @@ static int	ft_check_false0(t_stack **a)
 
 static int	ft_check_false2(t_stack **a)
 {
-	t_stack *head;
+	t_stack	*head;
 
 	head = *a;
 	while (head)
@@ -55,7 +42,7 @@ static int	ft_check_false2(t_stack **a)
 
 void	ft_big_markup(int index, t_stack **a)
 {
-	t_stack  *head;
+	t_stack	*head;
 
 	head = *a;
 	while (head)
@@ -66,12 +53,8 @@ void	ft_big_markup(int index, t_stack **a)
 	}
 }
 
-void	ft_sort(t_stack **a, t_stack **b)
+static void	ft_big_sort(t_stack **a, t_stack **b)
 {
-	int 	index;
-
-	index = ft_find_start_index(a);
-	ft_big_markup(index, a);
 	while (ft_check_false0(a))
 	{
 		if ((*a)->markup == 0)
@@ -86,4 +69,31 @@ void	ft_sort(t_stack **a, t_stack **b)
 		else
 			ft_rotate("ra", a);
 	}
+}
+
+void	ft_sort(t_stack **a, t_stack **b)
+{
+	int	index;
+	int	size;
+
+	size = ft_size(a);
+	index = ft_find_start_index(a);
+	ft_big_markup(index, a);
+	if (size <= 100)
+	{
+		while (ft_check_false0(a))
+		{
+			if (ft_need_swap(a, index))
+			{
+				ft_swap("sa", a);
+				ft_big_markup(index, a);
+			}
+			else if ((*a)->markup == 0)
+				ft_push_to_stack("pb", a, b);
+			else
+				ft_rotate("ra", a);
+		}
+	}
+	else
+		ft_big_sort(a, b);
 }

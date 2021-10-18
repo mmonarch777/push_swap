@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_index.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmonarch <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/18 18:44:29 by mmonarch          #+#    #+#             */
+/*   Updated: 2021/10/18 18:44:32 by mmonarch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static int	ft_check_min(t_stack **a)
 {
-	t_stack *head;
+	t_stack	*head;
 
 	head = *a;
 	while (head)
 	{
-		if(head->index == -1)
+		if (head->index == -1)
 			return (head->number);
 		head = head->next;
 	}
@@ -16,34 +28,34 @@ static int	ft_check_min(t_stack **a)
 
 static void	ft_add_index(int *ind, t_stack **a)
 {
-	t_stack *head;
-	int min;
+	t_stack	*head;
+	int		min;
 
 	head = *a;
 	min = ft_check_min(a);
 	while (head)
 	{
-		if(min > head->number && head->index == -1)
+		if (min > head->number && head->index == -1)
 			min = head->number;
 		head = head->next;
 	}
 	head = *a;
 	while (head)
 	{
-		if(head->number == min)
+		if (head->number == min)
 			head->index = *ind;
 		head = head->next;
 	}
 }
 
-static int ft_check_index(t_stack **a)
+static int	ft_check_index(t_stack **a)
 {
-	t_stack *head;
+	t_stack	*head;
 
 	head = *a;
 	while (head)
 	{
-		if(head->index == -1)
+		if (head->index == -1)
 			return (1);
 		head = head->next;
 	}
@@ -52,7 +64,7 @@ static int ft_check_index(t_stack **a)
 
 void	ft_index(t_stack **a)
 {
-	t_stack *head;
+	t_stack	*head;
 	int		ind;
 
 	ind = 1;

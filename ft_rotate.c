@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_rotate.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmonarch <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/18 18:47:52 by mmonarch          #+#    #+#             */
+/*   Updated: 2021/10/18 18:47:54 by mmonarch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	ft_rotate(char *str, t_stack **stack)
 {
-	t_stack *swap1;
-	t_stack *swap2;
+	t_stack	*swap1;
+	t_stack	*swap2;
 
 	if (!*stack || !(*stack)->next)
-		return;
+		return ;
 	swap1 = *stack;
 	swap2 = (*stack)->next;
 	while ((*stack)->next)

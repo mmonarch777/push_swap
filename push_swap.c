@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmonarch <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/18 18:49:21 by mmonarch          #+#    #+#             */
+/*   Updated: 2021/10/18 19:27:14 by mmonarch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	main(int argc, char **argv)
 {
-	t_stack *a;
-	t_stack *b;
+	t_stack	*a;
+	t_stack	*b;
 
 	a = NULL;
 	b = NULL;
@@ -15,16 +27,6 @@ int	main(int argc, char **argv)
 	ft_sort(&a, &b);
 	ft_sort_back(&a, &b);
 	ft_last_move(&a);
-//	while (a)
-//	{
-//		ft_printf("a:  number %5d,  index %5d,  markup %5d,  num_markup %5d,  position %5d,  push_up %5d\n", a->number, a->index, a->markup, a->num_markup, a->position, a->step_up);
-//		a = a->next;
-//	}
-//	ft_printf("----------------------------------------------------------------------------------------------------------\n");
-//	while (b)
-//	{
-//		ft_printf("b:  number %5d,  index %5d,  markup %5d,  num_markup %5d,  position %5d,  push_up %5d\n", b->number, b->index, b->markup, b->num_markup, b->position, b->step_up);
-//		b = b->next;
-//	}
-	return 0;
+	ft_clear(&a);
+	return (0);
 }

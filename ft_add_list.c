@@ -1,38 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort_back.c                                     :+:      :+:    :+:   */
+/*   ft_add_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmonarch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 18:48:33 by mmonarch          #+#    #+#             */
-/*   Updated: 2021/10/18 18:48:36 by mmonarch         ###   ########.fr       */
+/*   Created: 2021/10/18 18:38:53 by mmonarch          #+#    #+#             */
+/*   Updated: 2021/10/18 18:38:57 by mmonarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_find_and_add_position(t_stack **a, t_stack **b)
+void	*ft_lstnew_ps(int number)
 {
-	t_stack	*head;
+	t_stack	*stack;
 
-	head = *b;
-	while (head)
-	{
-		ft_find_position(a, &head);
-		head = head->next;
-	}
+	stack = malloc(sizeof (t_stack));
+	if (!stack)
+		return (NULL);
+	stack->number = number;
+	stack->next = NULL;
+	return (stack);
 }
 
-void	ft_sort_back(t_stack **a, t_stack **b)
+void	ft_add_to_list(int *integer, int size, t_stack **a)
 {
-	ft_step_to_up(a);
-	ft_step_to_up(b);
-	while ((*b))
+	t_stack	*head;
+	int		i;
+
+	i = 0;
+	if (!*a)
 	{
-		ft_find_and_add_position(a, b);
-		ft_push_back(a, b);
-		ft_step_to_up(a);
-		ft_step_to_up(b);
+		*a = ft_lstnew_ps(integer[i]);
+		i++;
+	}
+	head = *a;
+	while (size > i)
+	{
+		head->next = ft_lstnew_ps(integer[i]);
+		i++;
+		head = head->next;
 	}
 }

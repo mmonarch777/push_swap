@@ -96,5 +96,5 @@ int		ft_strchr_printf(const char *s, int c);
 int		ft_print_u(t_struct *flag, va_list arg);
 int		ft_count_ptr(unsigned long adres);
 void	ft_putnbr_hex(unsigned long adres, t_struct *flag);
-int		ft_print_XXX(t_struct *flag, va_list arg, char **mass);
+int		ft_print_xxx(t_struct *flag, va_list arg, char **mass);
 #endif
