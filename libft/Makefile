@@ -38,7 +38,7 @@ SRC =	ft_memset.c		ft_isalpha.c	ft_bzero.c\
         srcprintf/ft_print_ptr.c\
         srcprintf/ft_print_u.c\
         srcprintf/ft_for_hex.c\
-        srcprintf/ft_print_XXX.c
+        srcprintf/ft_print_xxx.c
 
 SRC_B = ft_lstnew.c		ft_lstadd_front.c	ft_lstsize.c\
 		ft_lstlast.c	ft_lstadd_back.c	ft_lstdelone.c\
