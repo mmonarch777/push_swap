@@ -6,7 +6,7 @@
 /*   By: mmonarch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 18:38:36 by mmonarch          #+#    #+#             */
-/*   Updated: 2021/10/18 18:55:28 by mmonarch         ###   ########.fr       */
+/*   Updated: 2021/10/20 13:13:24 by mmonarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ static int	ft_find_number(char **argv)
 			error ("There is an invalid argument");
 		j = 0;
 		mass = ft_split(argv[i], ' ');
+		ft_check_digit(mass);
 		while (mass[j])
 		{
-			ft_check_digit(mass);
 			free(mass[j]);
 			j++;
 			size++;

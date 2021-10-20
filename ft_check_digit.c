@@ -18,6 +18,8 @@ void	ft_check_digit(char **mass)
 	int	j;
 
 	i = 0;
+	if (mass[i] == NULL)
+		error ("There is an invalid argument after split");
 	while (mass[i])
 	{
 		j = 0;
